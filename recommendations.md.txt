@@ -1,0 +1,36 @@
+# NYC 311 SLA Analysis — Findings & Recommendations
+
+## Context
+Analysis of 853,689 NYC 311 service requests (June–September 2026), examining 
+resolution-time patterns across agencies, complaint types, and boroughs.
+
+## Methodology note on SLA threshold
+The dataset's due_date field was 99.6% missing, making it unusable as an SLA 
+baseline. Resolution-time distribution was used instead: median = 4.41 hours, 
+mean = 90.4 hours. The large gap between mean and median indicated a long tail 
+of outlier complaints skewing the average. Three times the median (13.2 hours) 
+was used as the working "breach" threshold. Overall breach rate: 39.42%.
+
+## Finding 1 — Agency, not geography, drives delay
+Borough-level breach rates ranged narrowly (35%–48.5%), ruling out location as 
+a major factor. Agency-level rates told a different story: Department of 
+Housing Preservation and Development (HPD) had a 98% breach rate, while NYPD — 
+the highest-volume agency — had only 3%.
+
+## Finding 2 — Housing-related complaint types are the core issue
+Complaint types under HPD's jurisdiction (rodent, water leak, unsanitary 
+conditions) had breach rates near 100%, confirming that agency-level delay is 
+concentrated in a specific process area rather than distributed broadly.
+
+## Recommendation
+Resourcing and process improvements should target HPD's complaint-handling 
+workflow specifically, not be distributed by borough. A geography-first 
+resourcing strategy would not address the primary driver of delay found here.
+
+## Limitations
+- The 13.2-hour threshold is a statistically derived proxy, not an official 
+  city SLA target
+- Analysis covers 2.5 months; a full year of data would surface seasonal 
+  effects (e.g., winter heating complaints) not visible here
+- Staffing and budget data were not available, limiting root-cause analysis 
+  beyond the complaint-type pattern
